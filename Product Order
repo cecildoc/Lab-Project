@@ -1,0 +1,90 @@
+
+package javalabproject;
+
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
+
+public class OrderProduct {
+    public static Scanner order = new Scanner(System.in);
+    public static ArrayList<Integer> amountpurchased = new ArrayList<>();
+    public static ArrayList<String> items = new ArrayList<>();
+    public static int amountpaid , amountremaining;
+    public static String shippingadress;
+    public static String billingadress;
+
+
+    
+    
+    
+    
+    
+    
+    
+    public static void main(String[] args){
+        String finished = "no"; 
+        String ItemsPurchased;
+        int quantities;
+        while (finished.equals("no")){//Creating Order invoice
+            System.out.println("Please input your ordered item : ");
+            ItemsPurchased = order.next();
+            items.add(ItemsPurchased);
+            
+            System.out.println("Please input amount ordered");
+            quantities = order.nextInt();
+            amountpurchased.add(quantities);
+            
+            System.out.println("Are you finished? Please input yes or no: ");
+            finished = order.next();
+          
+        }
+        Payments();
+      
+    }
+        
+    
+    
+        public static void Payments(){
+
+            int Installments;
+            System.out.println("Please input how in how many installments"
+                    + " you want to pay: ");
+            Installments = order.nextInt();
+            System.out.println("Please input installments paid : ");
+            amountpaid = order.nextInt();
+            
+            System.out.println("Installments remaining : " + (Installments - 
+                    amountpaid));
+            if((Installments - amountpaid) != 0){
+                System.out.println("There are " + (Installments - amountpaid) + 
+                " Installments remaining. Please pay the remaining "
+                + "Installments ");
+                }
+            ShipBill();
+            }
+    
+        public static void ShipBill(){
+            String choice = "no";
+            System.out.println("Please enter your billing adress: ");
+            billingadress = order.next();
+            System.out.println("Is your Shipping Adress the same as your "
+                 + "your Billing Adress? Please input yes or no.");
+            choice = order.next();
+            
+            if (choice.equals("yes")){
+                shippingadress = billingadress;
+                System.out.println("Your shipping and billing adress is: " + 
+                        shippingadress);}
+            else{
+                System.out.println("Please enter your shipping adress: ");
+                shippingadress = order.next();
+            }                   
+            
+            System.out.println("The products you purchased are: " + items);
+            System.out.println("The amount of each product that you purchased"
+                    + " is: " + amountpurchased);
+
+            System.out.println("Your Shipping Adress is: " +shippingadress);
+            System.out.println("Your Billing Adress is: " + billingadress);
+        }
+    
